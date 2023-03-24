@@ -92,4 +92,6 @@ To replace original screen, you have to remove three boards (one on the right, t
 ![Display connection](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_conn.png)
 ![FFC to Display connector](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/ffc_2_display_conn.png)
 ![Raspberry Pi Pico](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/rasppico.png)
+![Testing display](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/testing_display.jpeg)
+![Working display](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/working_display.jpeg)
 
