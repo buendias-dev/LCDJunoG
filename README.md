@@ -41,7 +41,8 @@ Following the Service manual, locate CN12 connector. It's a 18 pin FPC connector
 To replace original screen, you have to remove three boards (one on the right, then one on the left and finally you can take out display board)
 
 ### Printing display support
-I printed [dpeddi support](https://github.com/dpeddi/LCDJunoG/blob/main/junog_display_support%20v8.stl) slightly modified 
+I printed [dpeddi support](https://github.com/dpeddi/LCDJunoG/blob/main/junog_display_support%20v8.stl) slightly modified.
+
 Because It was printed in blue, it was painted in black.
 
 ## Pinout
