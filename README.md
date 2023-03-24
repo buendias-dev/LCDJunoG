@@ -43,7 +43,7 @@ To replace original screen, you have to remove three boards (one on the right, t
 ### Printing display support
 I printed [dpeddi support](https://github.com/dpeddi/LCDJunoG/blob/main/junog_display_support%20v8.stl) slightly modified.
 
-Because It was printed in blue, it was painted in black.
+Because it was printed in blue, it was finally painted in black.
 
 ## Pinout
 |JUNO-G Pin|JUNO-G Pin Function|Raspberry Pi Pico | Pico Pin|
