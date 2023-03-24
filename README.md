@@ -21,7 +21,7 @@ https://github.com/bjaan/roland-juno-g-display-replacement
 ## Project development
 ### BOM
 Connecting Roland Juno-G FPC connector to PCB display connector was the main problem
-
+- [Raspberry Pi Pico](https://es.aliexpress.com/item/1005004005660504.html)
 - [FPC/FFC Adapter Board 1.0mm 18P, Curved needle](https://es.aliexpress.com/item/32974345886.html)
 - [FPC FFC Ribbon Flexible Flat Length 30CM, 18P, Forward Direction, Pitch 1.0mm](https://es.aliexpress.com/item/1005002468369055.html)
 - [Dupont Jumper Wire Line 10CM 20CM 30CM Female VS Female, 20cm, 20pin](https://www.aliexpress.com/item/4000578173872.html)
