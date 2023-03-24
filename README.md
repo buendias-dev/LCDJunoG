@@ -41,7 +41,7 @@ Following the Service manual, locate CN12 connector. It's a 18 pin FPC connector
 To replace original screen, you have to remove three boards (one on the right, then one on the left and finally you can take out display board)
 
 
-## Montaje
+## Pinout
 |JUNO-G Pin|JUNO-G Pin Function|Raspberry Pi Pico | Pico Pin|
 |---|---|---|---|
 |18|+5V|VSYS|39
@@ -87,3 +87,9 @@ To replace original screen, you have to remove three boards (one on the right, t
       -|20      21|-
        \----------/
 ```                 
+
+## Screenshots
+![Display connection](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_conn.png)
+![FFC to Display connector](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/ffc_2_display_conn.png)
+![Raspberry Pi Pico](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/rasppico.png)
+
