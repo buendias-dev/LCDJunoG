@@ -1,84 +1,89 @@
+# JunoG display replacement
+The Roland Juno-G display was defective. It was replaced by a new display but this item wasn't available anymore.
+This project try to implement the previous work by dpeddi to replace original lcd screen with a generic one.
 
-Roland Juno G LCD Emulator
-==========================
+## Acknoledments
+This work is based on this [github project](https://github.com/dpeddi/LCDJunoG), a masterpiece of reverse engeniering by the user dpeddi.
 
-The keyboard Roland Juno G is equipped with an "International Display Works" V0054850 Rev A LCD with PN: 5485SGPABNC
+## References
+### Roland Juno-G forum
+https://forums.rolandclan.com/viewtopic.php?f=12&t=58712&start=30
 
-It seems that this part is defective and Roland replaced it with a new revision that was quite expansive
-and nowadays isnt available any more.
+### Original GitHub by dpeddi
+https://github.com/dpeddi/LCDJunoG
 
-I looked for a different display unit that would fit the old one.
-I've choosen this one: https://www.aliexpress.com/item/1005003033844928.html 
+You can take a look at another forks in Insights > Forks
 
-It is jus a little smaller then the old one but it should fit well, but the interface is SPI, while the 
-original display was parallel.
-
-Perfect to reduce the number of pins required to connect to a microcontroller.
-
-I connected to the keyboard my hantek 6022BL Logic probe and tried to sniff the data.
-The original Hantek software was really poor, so i moved to Sigrok.
-After few attempts I had my csv with the sniffed data.
-I wrote a small python program to parse the sniffed data and visual look to a result..
-Finally i understood the protocol.
-
-I can assume that the original display have two KS0713 controllers that control half display each other.
-
-I connected the keyboard and the display to my ESP32 (I started dreaming to change the color using wifi), 
-and after some tests i discovered that the speed of the keyboard bus was too fast to use IRQ, so i tried 
-to move to DMA by using the CS1 line as reference clock for the I2C controller.
-It worked.. i get half display.. but by reading the ESP32 datasheet I discovered that the second I2C controller
-can't be used for a secondary parallel input..
-
-After few reading I decided to buy a Raspberry Pi Pico. The PIO seems really promising...
-I connected it... the display connected to SPI is 2 or 3 time faster then ESP... great...
-So i implemented a sketch to read data using IRQ... but even the RP2040 failed... 
-so i moved to State Machine + DMA... it was a pain... few documentation id didn't worked at all..
+### Detailled Github project by bjaan
+https://github.com/bjaan/roland-juno-g-display-replacement
 
 
-I've studied some of the following project located on github to learn something more about dma  
-https://github.com/raspberrypi/pico-examples/blob/master/pio/logic_analyser/logic_analyser.c  
-https://github.com/gamblor21/rp2040-logic-analyzer/blob/main/rp2040-logic-analyzer.c  
-https://github.com/panda5mt/picampinos  
-https://github.com/ArduCAM/arducam_mic/blob/master/arducam_mic.c  
-https://github.com/pinballpower/code_dmd  
-https://github.com/jostlowe/Pico-DMX  
+## Project development
+### BOM
+Connecting Roland Juno-G FPC connector to PCB display connector was the main problem
 
-After some attempts i choosed with Pico-DMX, adapted to my needs to get the display working.
+- [FPC/FFC Adapter Board 1.0mm 18P, Curved needle](https://es.aliexpress.com/item/32974345886.html)
+- [FPC FFC Ribbon Flexible Flat Length 30CM, 18P, Forward Direction, Pitch 1.0mm](https://es.aliexpress.com/item/1005002468369055.html)
+- [Dupont Jumper Wire Line 10CM 20CM 30CM Female VS Female, 20cm, 20pin](https://www.aliexpress.com/item/4000578173872.html)
+
+### Raspberry Pico program uploading
+I upload the program compiled by bjaan. You can find uf2 file in [releases](https://github.com/bjaan/roland-juno-g-display-replacement/releases)
+
+1. Press BOOTSEL in Raspberry Pico and without releasing this button connect Raspberry Pico to power supply
+2. Copy UF2 file to USB drive
 
 
-BOM:
-====
+### Disasembly Juno-G
+Lots of screws. Please, download Juno-G Service Documentation and label all the screws that you have to take out.
 
-- Raspberry Pi Pico
-- Display ILI9488 5.0"
-- Some jumper wires
-- Some solder and some dil jumper and a solder board and thin cables.
+Following the Service manual, locate CN12 connector. It's a 18 pin FPC connector located on the right.
 
-Pinout:
-=======
+To replace original screen, you have to remove three boards (one on the right, then one on the left and finally you can take out display board)
 
-![alt text](https://github.com/dpeddi/LCDJunoG/blob/main/image.png?raw=true)
 
-Conntecting the RPI pico to the display and the keyboard is quite easy.
-You just need to find out the keyboard display pinout by reading the service manual and invent something to connect the rpi to the keyboard.
+## Montaje
+|JUNO-G Pin|JUNO-G Pin Function|Raspberry Pi Pico | Pico Pin|
+|---|---|---|---|
+|18|+5V|VSYS|39
+|17|GND|GND (next to VSYS)|38|
+|16|+3V|(not connected)||
+|15|RST|GP14|19|
+|14|CS1|GP13|17|
+|13|CS2|GP12|16|
+|12|RS|GP11|15|
+|11|WE|GP10|14|
+|10|D0|GP2|4|
+|9|D1|GP3|5|
+|8|D2|GP4|6|
+|7|D3|GP5|7|
+|6|D4|GP6|9|
+|5|D5|GP7|10|
+|4|D6|GP8|11|
+|3|D7|GP9|12|
+|2|BRGT|GP26|31|
+|1|BRGT Vref|3V3|36|
 
-|JunoG Pin|JunoG Function|RpiPico Pin|
-|---|---|---|
-|18|+5V|VSYS|
-|17|GND|GND|
-|16|+3V||
-|15|RST|GP14|
-|14|CS1|GP12|
-|13|CS2|GP13|
-|12|RS|GP11|
-|11|WE|GP10|
-|10|D0|GP2|
-|9|D1|GP3|
-|8|D2|GP4|
-|7|D3|GP5|
-|6|D4|GP6|
-|5|D5|GP7|
-|4|D6|GP8|
-|3|D7|GP9|
-|2|BRGT|GP26|
-|1|BRGT Vref|+3V|
+
+```
+       /----------\
+      -|1       40|-
+      -|        39|-18
+      -|        38|-17
+    10-|4         |-
+     9-|5       36|-1
+     8-|6         |-
+     7-|7         |-
+      -|          |-
+     6-|9         |-
+     5-|10      31|-2
+     4-|11        |-
+     3-|12        |-
+      -|          |-
+    11-|14        |-
+    12-|15        |-
+    13-|16        |-
+    14-|17        |-
+    15-|19        |-
+      -|20      21|-
+       \----------/
+```                 
