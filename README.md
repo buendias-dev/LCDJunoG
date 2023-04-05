@@ -96,7 +96,7 @@ Inspired by bjaan a I drew this simple label printed by the use of a label print
 ![Display Labels Preview](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_label_view.jpg)
 
 This was the file. It was printed in a 130cm height.
-![Display Label](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_label.png)
+[Display Label](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_label.png)
 
 
 ## Screenshots
