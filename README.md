@@ -40,12 +40,7 @@ Following the Service manual, locate CN12 connector. It's a 18 pin FPC connector
 
 To replace original screen, you have to remove three boards (one on the right, then one on the left and finally you can take out display board)
 
-### Printing display support
-I printed [dpeddi support](https://github.com/dpeddi/LCDJunoG/blob/main/junog_display_support%20v8.stl) slightly modified.
-
-Because it was printed in blue, it was finally painted in black.
-
-## Pinout
+### Pinout
 |JUNO-G Pin|JUNO-G Pin Function|Raspberry Pi Pico | Pico Pin|
 |---|---|---|---|
 |18|+5V|VSYS|39
@@ -91,6 +86,18 @@ Because it was printed in blue, it was finally painted in black.
       -|20      21|-
        \----------/
 ```                 
+### Printing display support
+I printed [dpeddi support](https://github.com/dpeddi/LCDJunoG/blob/main/junog_display_support%20v8.stl) slightly modified.
+
+Because it was printed in blue, it was finally painted in black.
+
+### Display label
+Inspired by bjaan a I drew this simple label printed by the use of a label printer.
+![Display Labels Preview](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_label_view.jpg)
+
+This was the file. It was printed in a 130cm height.
+![Display Label](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_label.png)
+
 
 ## Screenshots
 ![Display connection](https://raw.githubusercontent.com/buendias-dev/LCDJunoG/main/display_conn.png)
